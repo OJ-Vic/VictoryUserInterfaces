@@ -121,3 +121,131 @@ function showSuccessMessage() {
   const bookMeetingSection = document.querySelector('.book-meeting');
   bookMeetingSection.appendChild(successMessage);
 }
+
+
+
+// Function to retrieve users from JSON file
+async function getUsersFromJSON() {
+  try {
+    const response = await fetch('Users.json');
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error('Error fetching users:', error);
+    return [];
+  }
+}
+
+// Function to save users to JSON file
+async function saveUsersToJSON(users) {
+  try {
+    const response = await fetch('Users.json', {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(users),
+    });
+    if (response.ok) {
+      console.log('Users saved successfully.');
+    } else {
+      console.error('Failed to save users.');
+    }
+  } catch (error) {
+    console.error('Error saving users:', error);
+  }
+}
+
+
+// Function to handle form toggle
+function toggleForm() {
+  const loginForm = document.querySelector('.login_form');
+  const signupForm = document.querySelector('.signup_form');
+  const formCloseBtn = document.querySelector('.form_close');
+  const formOpenBtn = document.querySelector('#form-open');
+
+  // Show login form by default
+  loginForm.style.display = 'block';
+  signupForm.style.display = 'none';
+
+  // Event listener for form open button
+  formOpenBtn.addEventListener('click', () => {
+    loginForm.style.display = 'block';
+    signupForm.style.display = 'none';
+  });
+
+  // Event listener for form close button
+  formCloseBtn.addEventListener('click', () => {
+    loginForm.style.display = 'none';
+    signupForm.style.display = 'none';
+  });
+
+  // Event listener for signup link
+  const signupLink = document.getElementById('signup');
+  signupLink.addEventListener('click', () => {
+    loginForm.style.display = 'none';
+    signupForm.style.display = 'block';
+  });
+}
+
+async function handleLoginFormSubmit(event) {
+  event.preventDefault();
+  const email = event.target.querySelector('input[type="email"]').value;
+  const password = event.target.querySelector('input[type="password"]').value;
+
+  // Perform login validation here
+  // ...
+
+  // Example: Login validation
+  if (email && password) {
+    const users = await getUsersFromJSON();
+    const user = users.find((user) => user.email === email && user.password === password);
+    if (user) {
+      alert('Login successful');
+      // Redirect the user to the desired page
+      window.location.href = 'dashboard.html';
+    } else {
+      alert('Invalid email or password');
+    }
+  }
+}
+
+// Function to handle signup form submission
+async function handleSignupFormSubmit(event) {
+  event.preventDefault();
+  const email = event.target.querySelector('input[type="email"]').value;
+  const password = event.target.querySelector('input[type="password"]').value;
+
+  // Perform signup validation here
+  // ...
+
+  // Example: Signup validation
+  if (email && password) {
+    const users = await getUsersFromJSON();
+    const existingUser = users.find((user) => user.email === email);
+    if (existingUser) {
+      alert('User with this email already exists');
+    } else {
+      const newUser = { email, password };
+      users.push(newUser);
+      await saveUsersToJSON(users);
+      alert('Signup successful');
+      // Clear the form fields after successful signup
+      event.target.reset();
+      // Display the login form after successful signup
+      const loginForm = document.querySelector('.login_form');
+      const signupForm = document.querySelector('.signup_form');
+      loginForm.style.display = 'block';
+      signupForm.style.display = 'none';
+    }
+  }
+}
+
+// Call the toggleForm function on page load
+window.addEventListener('DOMContentLoaded', toggleForm);
+
+// Add event listeners to the login and signup forms
+const loginForm = document.querySelector('.login_form');
+const signupForm = document.querySelector('.signup_form');
+loginForm.addEventListener('submit', handleLoginFormSubmit);
+signupForm.addEventListener('submit', handleSignupFormSubmit);
