@@ -381,6 +381,10 @@ button[type="submit"]:hover {
     font-size: 16px;
 }
 
+.cta-button:hover {
+    background-color:#555;
+}
+
 /* Features section */
 .features {
     display: flex;
