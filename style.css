@@ -242,6 +242,54 @@ header {
     color: black;
 }
 
+.login-message {
+    background-color: #4caf50;
+    color: #fff;
+    padding: 10px;
+    margin-top: 10px;
+}
+  
+.signup-message {
+    background-color: #4caf50;
+    color: #fff;
+    padding: 10px;
+    margin-top: 10px;
+  }
+
+footer {
+    background-color: #64635c;
+    padding: 20px;
+    text-align: center;
+    margin-top: auto;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.social {
+    font-size: 20px;
+}
+
+.social a {
+    margin-right: 10px;
+    color: #333;
+}
+
+.footer-info {
+    text-align: right;
+}
+
+.footer-info p {
+    margin: 5px 0;
+    color: black;
+    font-size: 14px;
+}
+
+
+
 /*About Us */
 .about-us {
     padding: 20px;
@@ -255,7 +303,7 @@ header {
     font-size: 20px;
     position: relative;
 }
-footer {
+.contact footer {
     background-color: #64635c;
     padding: 20px;
     text-align: center;

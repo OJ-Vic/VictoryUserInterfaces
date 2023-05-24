@@ -11,18 +11,13 @@
 </head>
 <body>
     <header>
-        <div class="social">
-            <a href="" class="facebook"><i class="fab fa-facebook-f"></i></a>
-            <a href="" class="instagram"><i class="fab fa-instagram"></i></a>
-            <a href="" class="twitter"><i class="fab fa-twitter"></i></a>
-        </div>
         <a href="" class="text_logo">MyWellness</a>
         <ul class="navigation">
             <li><a href="">HOME</a></li>
             <li><a href="">SERVICE</a></li>
             <li><a href="">BOOK MEETING</a></li>
             <li><a href="About Us.html">ABOUT US</a></li>
-            <li><button class="toggle_btn" id="form-open">Login</button></li>
+            <li><button class="toggle_btn" id="form-open">LOGIN</button></li>
         </ul>       
     </header>
 
@@ -35,11 +30,11 @@
               <h2>Login</h2>
   
               <div class="input_box">
-                <input type="email" placeholder="Enter your email" required />
+                <input type="email" id="loginEmail" placeholder="Enter your email" required />
                 <i class="uil uil-envelope-alt email"></i>
               </div>
               <div class="input_box">
-                <input type="password" placeholder="Enter your password" required />
+                <input type="password" id="loginPassword" placeholder="Enter your password" required />
                 <i class="uil uil-lock password"></i>
                 <i class="uil uil-eye-slash pw_hide"></i>
               </div>
@@ -52,7 +47,8 @@
                 <a href="#" class="forgot_pw">Forgot password?</a>
               </div>
   
-              <button class="button">Login Now</button>
+              <button class="button" id="login-message">Login Now</button>
+              <!--<div class="login_form" id="submit"></div>-->
   
               <div class="login_signup">Don't have an account? <a href="#" id="signup">Signup</a></div>
             </form>
@@ -64,27 +60,43 @@
               <h2>Signup</h2>
   
               <div class="input_box">
-                <input type="email" placeholder="Enter your email" required />
+                <input type="email" id="signupEmail" placeholder="Enter your email" required />
                 <i class="uil uil-envelope-alt email"></i>
               </div>
               <div class="input_box">
-                <input type="password" placeholder="Create password" required />
+                <input type="password" id="signupPassword" placeholder="Create password" required />
                 <i class="uil uil-lock password"></i>
                 <i class="uil uil-eye-slash pw_hide"></i>
               </div>
               <div class="input_box">
-                <input type="password" placeholder="Confirm password" required />
+                <input type="password" id="confirmPassword" placeholder="Confirm password" required />
                 <i class="uil uil-lock password"></i>
                 <i class="uil uil-eye-slash pw_hide"></i>
               </div>
   
-              <button class="button">Signup Now</button>
+              <button class="button" id="signup-message">Signup Now</button>
   
               <div class="login_signup">Already have an account? <a href="#" id="login">Login</a></div>
             </form>
           </div>
         </div>
       </section>
+
+      <footer>
+        <div class="footer-content">
+          <div class="social">
+              <a href="" class="twitter"><i class="fab fa-twitter"></i></a>
+              <a href="" class="instagram"><i class="fab fa-instagram"></i></a>
+              <a href="" class="facebook"><i class="fab fa-facebook-f"></i></a>
+          </div>
+          <div class="footer-info">
+              <p>&copy; 2023 MyWellness. All rights reserved.</p>
+              <p>123 Main Street, City, Country</p>
+              <p>Email: ojeivictory692364@mywellness.com</p>
+              <p>Phone: +44 7202137995</p>
+          </div>
+      </div>
+    </footer>
 
     <script src="script.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>

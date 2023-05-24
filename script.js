@@ -188,6 +188,24 @@ function toggleForm() {
   });
 }
 
+// Function to display login success message
+function displayLoginSuccess() {
+  const loginMessage = document.getElementById('login-message');
+  const message = document.createElement('div');
+  message.classList.add('login-message');
+  message.innerText = 'Login successful';
+  loginMessage.appendChild(message);
+}
+
+// Function to display login failure message
+function displayLoginFailure() {
+  const loginMessage = document.getElementById('login-message');
+  const message = document.createElement('div');
+  message.classList.add('login-message');
+  message.innerText = 'Invalid email or password';
+  loginMessage.appendChild(message);
+}
+
 async function handleLoginFormSubmit(event) {
   event.preventDefault();
   const email = event.target.querySelector('input[type="email"]').value;
@@ -196,18 +214,33 @@ async function handleLoginFormSubmit(event) {
   // Perform login validation here
   // ...
 
-  // Example: Login validation
   if (email && password) {
     const users = await getUsersFromJSON();
     const user = users.find((user) => user.email === email && user.password === password);
     if (user) {
-      alert('Login successful');
+      displayLoginSuccess(); // Display login success message
       // Redirect the user to the desired page
       window.location.href = 'dashboard.html';
     } else {
-      alert('Invalid email or password');
+      displayLoginFailure(); // Display login failure message
     }
   }
+}
+
+function displaySignupSuccess() {
+  const signupMessage = document.getElementById('signup-message');
+  const message = document.createElement('div');
+  message.classList.add('signup-message');
+  message.innerText = 'Signup successful';
+  signupMessage.appendChild(message);
+}
+
+function displaySignupFailure() {
+  const signupMessage = document.getElementById('signup-message');
+  const message = document.createElement('div');
+  message.classList.add('signup-message');
+  message.innerText = 'User with this email already exists';
+  signupMessage.appendChild(message);
 }
 
 // Function to handle signup form submission
@@ -215,24 +248,22 @@ async function handleSignupFormSubmit(event) {
   event.preventDefault();
   const email = event.target.querySelector('input[type="email"]').value;
   const password = event.target.querySelector('input[type="password"]').value;
+  const confirmPassword = event.target.querySelector('#confirmPassword').value;
 
   // Perform signup validation here
   // ...
 
-  // Example: Signup validation
-  if (email && password) {
+  if (email && password && confirmPassword && password === confirmPassword) {
     const users = await getUsersFromJSON();
     const existingUser = users.find((user) => user.email === email);
     if (existingUser) {
-      alert('User with this email already exists');
+      displaySignupFailure(); // Display signup failure message
     } else {
       const newUser = { email, password };
       users.push(newUser);
       await saveUsersToJSON(users);
-      alert('Signup successful');
-      // Clear the form fields after successful signup
-      event.target.reset();
-      // Display the login form after successful signup
+      displaySignupSuccess(); // Display signup success message
+      event.target.reset(); // Clear the form fields after successful signup
       const loginForm = document.querySelector('.login_form');
       const signupForm = document.querySelector('.signup_form');
       loginForm.style.display = 'block';
@@ -240,6 +271,7 @@ async function handleSignupFormSubmit(event) {
     }
   }
 }
+
 
 // Call the toggleForm function on page load
 window.addEventListener('DOMContentLoaded', toggleForm);
