@@ -14,7 +14,7 @@ a {
 
 body {
     background: #64635c;
-    color: #fff;
+    color: #0b0217;
 }
 
 header {
@@ -48,6 +48,10 @@ header {
     color: chartreuse;
 }
 
+a.active,a.hover{
+    background: black;
+}
+
 .toggle_btn {
     border: none;
     color: #fff;
@@ -74,9 +78,9 @@ header {
     position: relative;
     height: 100vh;
     width: 100%;
-    background-image: url("images/Mental\ Wellness.jpg");
-    object-fit: cover;
-    background-position: relative;
+    margin-right: 10px;
+    background-color: white;
+    background-position: absolute;
 }
 
 .home::before {
@@ -97,6 +101,52 @@ header {
 }
 
   /* For Homepage.html */
+.img {
+    display: flex;
+    align-items: center;
+}
+
+.image img {
+    width: 604px;
+    height: 564px;
+    position: absolute;
+    left: 4%;
+    top: 20%;
+    animation: bounce 1s infinite;
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+.paragraph{
+    padding: 100px 0;
+    text-align: center;
+}
+
+.paragraph h1 {
+    color: #0b0217;
+    text-align:center;
+    /* margin-left: 400px; */
+    font-size: 36px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+
+.paragraph p {
+    font-size: 20px;
+    color: #0b0217;
+    margin-left: 650px;
+    margin-top: 70px;
+    margin-bottom: 40px;
+  
+  }
+
 .form_container {
     position: fixed;
     max-width: 320px;
@@ -401,9 +451,8 @@ button[type="submit"]:hover {
 
 
 /*Home.html styling*/
-/* Hero section */
 .hero {
-    background-color: #fc7c7c;
+    background-color: #fff;
     padding: 100px 0;
     text-align: center;
 }
